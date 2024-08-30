@@ -1,4 +1,8 @@
 extends Area2D
+signal hit
+signal fire_laser
+
+@export var cooldown_timer = 0.2
 
 @export var thrustAmount = 0.05
 @export var heading = 0
@@ -13,6 +17,12 @@ func _ready() -> void:
 	print("in _ready.  screen_size is: ")
 	print(screen_size)
 
+func start(pos):
+	print("Player: start()")
+	position = pos
+	show()
+	$CollisionShape2D.disabled = false
+
 func my_handle_inputs(delta: float) -> void:
 	var accel = 2
 	if (Input.is_action_pressed("move_left")):
@@ -23,7 +33,9 @@ func my_handle_inputs(delta: float) -> void:
 		var thrustVec = Vector2.RIGHT.rotated(heading) * thrustAmount * delta
 		velocity+=thrustVec
 	if (Input.is_action_pressed("fire")):
-		pass
+		if cooldown_timer <= 0:
+			fire_laser.emit(position, heading)
+			cooldown_timer = 0.2
 	
 	if (velocity.length() > 0):
 		$AnimatedSprite2D.play()
@@ -37,3 +49,13 @@ func my_handle_inputs(delta: float) -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	my_handle_inputs(delta)
+	cooldown_timer -= delta
+
+
+
+func _on_body_entered(body: Node2D) -> void:
+	print("Player: _on_body_entered");
+	#hide()
+	hit.emit()
+	# Must be deferred as we can't change physics properties on a physics callback.
+	$CollisionShape2D.set_deferred("disabled", true)

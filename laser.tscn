@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://csvufc6evc8il"]
+
+[ext_resource type="Texture2D" uid="uid://dq55isi2yi46b" path="res://art/tile_0000.png" id="1_6dldt"]
+[ext_resource type="Script" path="res://laser.gd" id="1_rixdu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ih6e6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6dldt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4hm4d"]
+size = Vector2(6, 16)
+
+[node name="LaserRigidBody2D" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_rixdu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = -1.5708
+sprite_frames = SubResource("SpriteFrames_ih6e6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_4hm4d")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -4.76837e-07)
+rotation = 1.5708
+scale = Vector2(0.4, 1.067)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

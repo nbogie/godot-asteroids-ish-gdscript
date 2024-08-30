@@ -1,8 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://upo0p0o2f6ob"]
+[gd_scene load_steps=6 format=3 uid="uid://upo0p0o2f6ob"]
 
 [ext_resource type="PackedScene" uid="uid://dcsx4ly2a6jri" path="res://player.tscn" id="1_2fsu3"]
+[ext_resource type="Script" path="res://main_scene_node.gd" id="1_5n7sh"]
+[ext_resource type="PackedScene" uid="uid://48m3i446axec" path="res://mob.tscn" id="2_heb4o"]
+[ext_resource type="PackedScene" uid="uid://csvufc6evc8il" path="res://laser.tscn" id="3_6m3v5"]
+
+[sub_resource type="Curve2D" id="Curve2D_r368v"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 5, -4, 0, 0, 0, 0, 1008, -5, 0, 0, 0, 0, 1009, 800, 0, 0, 0, 0, 10, 794, 0, 0, 0, 0, 5, -4)
+}
+point_count = 5
 
 [node name="MainSceneNode" type="Node"]
+script = ExtResource("1_5n7sh")
+mob_scene = ExtResource("2_heb4o")
+laser_scene = ExtResource("3_6m3v5")
 
 [node name="Player" parent="." instance=ExtResource("1_2fsu3")]
 
@@ -14,6 +26,20 @@ wait_time = 0.5
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+autostart = true
 
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(240, 450)
+
+[node name="MobPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_r368v")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+position = Vector2(5, -4)
+rotation = -0.000997009
+
+[connection signal="fire_laser" from="Player" to="." method="_on_player_fire_laser"]
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
