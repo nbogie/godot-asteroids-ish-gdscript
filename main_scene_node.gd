@@ -67,3 +67,5 @@ func spawn_a_laser(pos:Vector2, angle:float) -> void:
 
 func _on_player_fire_laser(pos:Vector2, angle:float) -> void:
 	spawn_a_laser(pos, angle)
+	spawn_a_laser(pos, angle-0.2)
+	spawn_a_laser(pos, angle+0.2)
