@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://upo0p0o2f6ob"]
+
+[ext_resource type="PackedScene" uid="uid://dcsx4ly2a6jri" path="res://player.tscn" id="1_2fsu3"]
+
+[node name="MainSceneNode" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource("1_2fsu3")]
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(240, 450)
