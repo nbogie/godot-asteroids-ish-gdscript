@@ -16,7 +16,6 @@ func _process(_delta: float) -> void:
 	rotation = toTarget.angle() - PI/2
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	print("mob freeing")
 	queue_free()
 
 

@@ -74,7 +74,7 @@ func _unhandled_input(event):
 func toggle_audio_mute() -> void:
 	var bus_index = AudioServer.get_bus_index("Master")
 	var isCurrentlyMuted = AudioServer.is_bus_mute(bus_index)
-	print("toggling audio.  was: ", isCurrentlyMuted)
+	print("Toggling audio.  was: ", isCurrentlyMuted)
 	AudioServer.set_bus_mute(bus_index, !isCurrentlyMuted)
 	
 	
