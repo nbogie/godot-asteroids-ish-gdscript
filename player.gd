@@ -71,7 +71,6 @@ func _on_body_entered(body: Node2D) -> void:
 func _unhandled_input(event):	
 	if event.is_action("toggle_mute_sound") && event.is_pressed():
 		toggle_audio_mute()
-		
 
 func toggle_audio_mute() -> void:
 	var bus_index = AudioServer.get_bus_index("Master")
