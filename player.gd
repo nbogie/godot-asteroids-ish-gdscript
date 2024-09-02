@@ -68,14 +68,15 @@ func _on_body_entered(body: Node2D) -> void:
 	$CollisionShape2D.set_deferred("disabled", true)
 
 
-func _unhandled_input(event):
-	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_M:
-			toggle_audio_mute()
+func _unhandled_input(event):	
+	if event.is_action("toggle_mute_sound") && event.is_pressed():
+		toggle_audio_mute()
+		
 
 func toggle_audio_mute() -> void:
 	var bus_index = AudioServer.get_bus_index("Master")
 	var isCurrentlyMuted = AudioServer.is_bus_mute(bus_index)
+	print("toggling audio.  was: ", isCurrentlyMuted)
 	AudioServer.set_bus_mute(bus_index, !isCurrentlyMuted)
 	
 	
