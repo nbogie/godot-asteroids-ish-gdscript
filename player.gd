@@ -49,8 +49,8 @@ func my_handle_inputs(delta: float) -> void:
 	else:
 		$AnimatedSprite2D.stop()
 	velocity *= 0.99
-	rotation=heading + PI/2
-	position+=velocity	
+	rotation = heading + PI/2
+	position += velocity	
 	position = position.clamp(Vector2.ZERO, screen_size)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
