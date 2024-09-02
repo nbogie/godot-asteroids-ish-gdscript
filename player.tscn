@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dcsx4ly2a6jri"]
+[gd_scene load_steps=10 format=3 uid="uid://dcsx4ly2a6jri"]
 
 [ext_resource type="Texture2D" uid="uid://c1lqh18axs2k0" path="res://art/playerGrey_up1.png" id="1_kaidl"]
 [ext_resource type="Script" path="res://player.gd" id="1_qdymh"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://beyrhcw7asueh" path="res://art/ship_0000.png" id="2_v3erd"]
 [ext_resource type="Texture2D" uid="uid://pcuik2lo4msq" path="res://art/playerGrey_walk1.png" id="3_6fc4l"]
 [ext_resource type="Texture2D" uid="uid://bqpgk76ccnoq0" path="res://art/playerGrey_walk2.png" id="4_4ngwr"]
+[ext_resource type="AudioStream" uid="uid://dhq1dweajv7jp" path="res://sounds/laser1.wav" id="7_cdngl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_462dc"]
 animations = [{
@@ -57,5 +58,20 @@ animation = &"fly"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(2.62, 2.15)
 shape = SubResource("CapsuleShape2D_xq15g")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 80
+emission_shape = 4
+emission_points = PackedVector2Array()
+emission_colors = PackedColorArray()
+direction = Vector2(0, 1)
+spread = 25.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+color = Color(1, 1, 0, 1)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_cdngl")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
