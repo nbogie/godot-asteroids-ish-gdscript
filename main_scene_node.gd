@@ -57,6 +57,8 @@ func spawn_a_mob() -> void:
 	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
 	mob.linear_velocity = velocity.rotated(direction)
 	# Spawn the mob by adding it to the Main scene.
+	mob.fire.connect(func(foo):_on_mob_fire_laser(foo.position, foo.rotation))
+	# mob.fire.connect(_on_mob_fire_laser)
 	add_child(mob)
 	
 

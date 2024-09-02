@@ -5,7 +5,6 @@ signal fire;
 @export var velocity:Vector2 = Vector2.ZERO
 @export var target = null;
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var mob_types = $AnimatedSprite2D.sprite_frames.get_animation_names()
@@ -26,4 +25,4 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 
 func _on_timer_timeout() -> void:
-	fire.emit()
+	fire.emit(self.position, self.rotation + PI/2)
