@@ -11,7 +11,7 @@ func _ready() -> void:
 	new_game()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func new_game():
@@ -57,7 +57,7 @@ func spawn_a_mob() -> void:
 	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
 	mob.linear_velocity = velocity.rotated(direction)
 	# Spawn the mob by adding it to the Main scene.
-	mob.fire.connect(func(foo):_on_mob_fire_laser(foo.position, foo.rotation))
+	mob.fire.connect(func(pos, angle):_on_mob_fire_laser(pos, angle))
 	# mob.fire.connect(_on_mob_fire_laser)
 	add_child(mob)
 	
