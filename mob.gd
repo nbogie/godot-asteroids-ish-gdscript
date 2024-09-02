@@ -21,3 +21,8 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func _on_timer_timeout() -> void:
 	fire.emit(self.position, self.rotation + PI/2)
+
+
+func _on_body_entered(body: Node) -> void:
+	print("mob: _on_body_entered")
+	print(body)

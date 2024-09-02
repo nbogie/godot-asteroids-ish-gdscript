@@ -15,10 +15,12 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hgvvw"]
+radius = 32.0
 
 [node name="MobRigidBody2D" type="RigidBody2D"]
 position = Vector2(300, 300)
-collision_mask = 0
+collision_layer = 2
+collision_mask = 5
 gravity_scale = 0.0
 script = ExtResource("1_yrjx0")
 metadata/_edit_group_ = true
@@ -29,7 +31,6 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_ahpal")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(4, 4)
 shape = SubResource("CircleShape2D_hgvvw")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
@@ -38,5 +39,6 @@ shape = SubResource("CircleShape2D_hgvvw")
 wait_time = 3.0
 autostart = true
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

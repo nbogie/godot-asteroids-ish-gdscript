@@ -60,11 +60,11 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(_body: Node2D) -> void:
-	print("Player: _on_body_entered");
+	print("Player: _on_body_entered", Time.get_ticks_msec(), _body.name);
 	#hide()
 	hit.emit()
 	# Must be deferred as we can't change physics properties on a physics callback.
-	$CollisionShape2D.set_deferred("disabled", true)
+	# $CollisionShape2D.set_deferred("disabled", true)
 
 
 func _unhandled_input(event):	
