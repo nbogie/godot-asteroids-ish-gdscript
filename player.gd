@@ -26,7 +26,6 @@ func start(pos):
 	$CollisionShape2D.disabled = false
 
 func my_handle_inputs(delta: float) -> void:
-	var accel = 2
 	if (Input.is_action_pressed("move_left")):
 		heading -= turnSpeed * delta
 	if (Input.is_action_pressed("move_right")):
@@ -60,7 +59,7 @@ func _process(delta: float) -> void:
 	cooldown_timer -= delta
 
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	print("Player: _on_body_entered");
 	#hide()
 	hit.emit()
