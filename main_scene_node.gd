@@ -66,7 +66,7 @@ func spawn_a_laser(pos:Vector2, angle:float) -> void:
 	var laser = laser_scene.instantiate()
 	laser.position = Vector2(pos.x, pos.y)
 	laser.rotation = angle	
-	laser.linear_velocity = Vector2.from_angle(angle) * 800	
+	laser.velocity = Vector2.from_angle(angle) * 800	
 	add_child(laser)
 
 func _on_player_fire_laser(pos:Vector2, angle:float) -> void:

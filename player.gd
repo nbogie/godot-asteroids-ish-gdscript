@@ -67,6 +67,9 @@ func _on_body_entered(_body: Node2D) -> void:
 	# $CollisionShape2D.set_deferred("disabled", true)
 
 
+func _on_area_entered(area: Area2D) -> void:
+	print("Player: _on_area_entered", Time.get_ticks_msec(), area.name);
+
 func _unhandled_input(event):	
 	if event.is_action("toggle_mute_sound") && event.is_pressed():
 		toggle_audio_mute()

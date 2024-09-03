@@ -24,5 +24,8 @@ func _on_timer_timeout() -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-	print("mob: _on_body_entered")
-	print(body)
+	print("mob: _on_body_entered", body.name)
+
+
+func _on_body_shape_entered(_body_rid: RID, body: Node, _body_shape_index: int, _local_shape_index: int) -> void:
+	print("mob: _on_body_shape_entered", body.name)
